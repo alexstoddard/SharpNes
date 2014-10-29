@@ -97,9 +97,59 @@ namespace SharpNes
                 new ImpliedInstruction(this) {               OpCode=0x18, Mnemonic="CLC", Op = Ops.CLC, BaseCycles = 2, Destination = voidDest },
                 // CLD - Clear Decimal Flag
                 new ImpliedInstruction(this) {               OpCode=0xD8, Mnemonic="CLD", Op = Ops.CLD, BaseCycles = 2, Destination = voidDest },
+                // CLI - Clear Decimal Flag
+                new ImpliedInstruction(this) {               OpCode=0xD8, Mnemonic="CLI", Op = Ops.CLI, BaseCycles = 2, Destination = voidDest },
+                // CLV - Clear Decimal Flag
+                new ImpliedInstruction(this) {               OpCode=0xD8, Mnemonic="CLV", Op = Ops.CLV, BaseCycles = 2, Destination = voidDest },
+                // CMP - Compare Accumulator With Memory
+                new ImmediateInstruction(this, A) {          OpCode=0xC9, Mnemonic="CMP", Op = Ops.CMP, BaseCycles = 2, Destination = voidDest },
+                new ZeroPageInstruction(this) {              OpCode=0xC5, Mnemonic="CMP", Op = Ops.CMP, BaseCycles = 2, Destination = voidDest },
+                new ZeroPageRegisterInstruction(this, X) {   OpCode=0xD5, Mnemonic="CMP", Op = Ops.CMP, BaseCycles = 4, Destination = voidDest },
+                new AbsoluteInstruction(this) {              OpCode=0xCD, Mnemonic="CMP", Op = Ops.CMP, BaseCycles = 4, Destination = voidDest },
+                new AbsoluteRegisterInstruction(this, X) {   OpCode=0xDD, Mnemonic="CMP", Op = Ops.CMP, BaseCycles = 4, Destination = voidDest },
+                new AbsoluteRegisterInstruction(this, Y) {   OpCode=0xD9, Mnemonic="CMP", Op = Ops.CMP, BaseCycles = 4, Destination = voidDest },
+                new IndexedIndirectInstruction(this, X)  {   OpCode=0xC1, Mnemonic="CMP", Op = Ops.CMP, BaseCycles = 6, Destination = voidDest },
+                new IndirectIndexedInstruction(this, Y)  {   OpCode=0xD1, Mnemonic="CMP", Op = Ops.CMP, BaseCycles = 5, Destination = voidDest },
+                // CPX - Compare X With Memory
+                new ImmediateInstruction(this, A) {          OpCode=0xE0, Mnemonic="CPX", Op = Ops.CPX, BaseCycles = 2, Destination = voidDest },
+                new ZeroPageInstruction(this) {              OpCode=0xE4, Mnemonic="CPX", Op = Ops.CPX, BaseCycles = 3, Destination = voidDest },
+                new AbsoluteInstruction(this) {              OpCode=0xEC, Mnemonic="CPX", Op = Ops.CPX, BaseCycles = 4, Destination = voidDest },
+                // CPY - Compare Y With Memory
+                new ImmediateInstruction(this, A) {          OpCode=0xC0, Mnemonic="CPY", Op = Ops.CPY, BaseCycles = 2, Destination = voidDest },
+                new ZeroPageInstruction(this) {              OpCode=0xC4, Mnemonic="CPY", Op = Ops.CPY, BaseCycles = 3, Destination = voidDest },
+                new AbsoluteInstruction(this) {              OpCode=0xCC, Mnemonic="CPY", Op = Ops.CPY, BaseCycles = 4, Destination = voidDest },
+                // DEC - Decrement Memory by one
+                new ZeroPageInstruction(this) {              OpCode=0xC6, Mnemonic="DEC", Op = Ops.DEC, BaseCycles = 5, Destination = memory },
+                new ZeroPageRegisterInstruction(this, X) {   OpCode=0xD6, Mnemonic="DEC", Op = Ops.DEC, BaseCycles = 6, Destination = memory },
+                new AbsoluteInstruction(this) {              OpCode=0xCE, Mnemonic="DEC", Op = Ops.DEC, BaseCycles = 6, Destination = memory },
+                new AbsoluteRegisterInstruction(this, X) {   OpCode=0xDE, Mnemonic="DEC", Op = Ops.DEC, BaseCycles = 7, Destination = memory },
+                // DEX - Decrement X by one
+                new ImpliedInstruction(this) {               OpCode=0xCA, Mnemonic="DEX", Op = Ops.DEX, BaseCycles = 2, Destination = X },
+                // DEY - Decrement Y by one
+                new ImpliedInstruction(this) {               OpCode=0x88, Mnemonic="DEY", Op = Ops.DEY, BaseCycles = 2, Destination = Y },
+                // EOR - Exclusive or Accumulator with Memory
+                new ImmediateInstruction(this, A) {          OpCode=0x49, Mnemonic="EOR", Op = Ops.EOR, BaseCycles = 2, Destination = A },
+                new ZeroPageInstruction(this) {              OpCode=0x45, Mnemonic="EOR", Op = Ops.EOR, BaseCycles = 3, Destination = A },
+                new ZeroPageRegisterInstruction(this, X) {   OpCode=0x55, Mnemonic="EOR", Op = Ops.EOR, BaseCycles = 4, Destination = A },
+                new AbsoluteInstruction(this) {              OpCode=0x4D, Mnemonic="EOR", Op = Ops.EOR, BaseCycles = 4, Destination = A },
+                new AbsoluteRegisterInstruction(this, X) {   OpCode=0x5D, Mnemonic="EOR", Op = Ops.EOR, BaseCycles = 4, Destination = A },
+                new AbsoluteRegisterInstruction(this, Y) {   OpCode=0x59, Mnemonic="EOR", Op = Ops.EOR, BaseCycles = 4, Destination = A },
+                new IndexedIndirectInstruction(this, X)  {   OpCode=0x41, Mnemonic="EOR", Op = Ops.EOR, BaseCycles = 6, Destination = A },
+                new IndirectIndexedInstruction(this, Y)  {   OpCode=0x51, Mnemonic="EOR", Op = Ops.EOR, BaseCycles = 5, Destination = A },
+                // INC - Increment Memory by one
+                new ZeroPageInstruction(this) {              OpCode=0xE6, Mnemonic="INC", Op = Ops.INC, BaseCycles = 5, Destination = memory },
+                new ZeroPageRegisterInstruction(this, X) {   OpCode=0xF6, Mnemonic="INC", Op = Ops.INC, BaseCycles = 6, Destination = memory },
+                new AbsoluteInstruction(this) {              OpCode=0xEE, Mnemonic="INC", Op = Ops.INC, BaseCycles = 6, Destination = memory },
+                new AbsoluteRegisterInstruction(this, X) {   OpCode=0xFE, Mnemonic="INC", Op = Ops.INC, BaseCycles = 7, Destination = memory },
+                // INX - Increment X by one
+                new ImpliedInstruction(this) {               OpCode=0xE8, Mnemonic="INX", Op = Ops.INX, BaseCycles = 2, Destination = X },
+                // INY - Increment Y by one
+                new ImpliedInstruction(this) {               OpCode=0xC8, Mnemonic="INY", Op = Ops.INY, BaseCycles = 2, Destination = Y },
                 // JMP - Jump
                 new AbsoluteWordInstruction(this)        {   OpCode=0x4C, Mnemonic="JMP", Op = Ops.JMP, BaseCycles = 3, Destination = PC },
                 new IndirectWordInstruction(this)        {   OpCode=0x6C, Mnemonic="JMP", Op = Ops.JMP, BaseCycles = 5, Destination = PC },
+                // JSR - Jump to Subroutine
+                new AbsoluteWordInstruction(this) {          OpCode=0x20, Mnemonic="JSR", Op = Ops.JSR, BaseCycles = 6, Destination = PC },
                 // LDA - Load Accumulator with Memory
                 new ImmediateInstruction(this, A) {          OpCode=0xA9, Mnemonic="LDA", Op = Ops.LDA, BaseCycles = 2, Destination = A },
                 new ZeroPageInstruction(this) {              OpCode=0xA5, Mnemonic="LDA", Op = Ops.LDA, BaseCycles = 3, Destination = A },
@@ -156,7 +206,6 @@ namespace SharpNes
             bool operational = false;
 
             Dictionary<byte, Instruction> instructions = Instructions.ToDictionary(instruction => instruction.OpCode, instruction => instruction);
-            List<string> lines = new List<string>();
             int count = 0;
 
             do
